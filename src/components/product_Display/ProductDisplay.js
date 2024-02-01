@@ -3,7 +3,7 @@ import "./ProductDisplay.css";
 import star_icon from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
 const ProductDisplay = (props) => {
-  const { product } = props;
+  const { product, addToCart } = props;
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
@@ -51,7 +51,13 @@ const ProductDisplay = (props) => {
           <div>XL</div>
           <div>XXL</div>
         </div>
-        <button>Add to cart</button>
+        <button
+          onClick={() => {
+            addToCart(product);
+          }}
+        >
+          Add to cart
+        </button>
         <p className="productdisplay-right-category">
           <span>Category: </span>Women, T-Shirts, Crop Top
         </p>
