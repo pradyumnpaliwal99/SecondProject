@@ -6,6 +6,7 @@ const ProductDisplay = (props) => {
   const { product, addToCart } = props;
   return (
     <div className="productdisplay">
+      {console.log("product", product)}
       <div className="productdisplay-left">
         <div className="productdisplay-img-list">
           <img src={product.image} alt="" />
@@ -14,7 +15,11 @@ const ProductDisplay = (props) => {
           <img src={product.image} alt="" />
         </div>
         <div className="procustdisplay-img">
-          <img className="productdisplay-main-img" src={product.image} alt="" />
+          <img
+            className="productdisplay-main-img"
+            src="../assets/product_1.png"
+            alt=""
+          />
         </div>
       </div>
       <div className="productdisplay-right">
