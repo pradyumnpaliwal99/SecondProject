@@ -1,24 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ProductDisplay.css";
 import star_icon from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDisplay = (props) => {
   const { product, addToCart } = props;
+
+  const onHandleClick = async () => {
+    console.log("hi");
+
+    const body = {
+      id: product.id,
+      name: product.name,
+      category: product.category,
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/cart/addToCart",
+        body
+      );
+
+      console.log("Response", response);
+      toast.success("Product added to cart!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="productdisplay">
       {console.log("product", product)}
       <div className="productdisplay-left">
         <div className="productdisplay-img-list">
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
-          <img src={product.image} alt="" />
+          <img src={product.image} alt="side" />
+          <img src={product.image} alt="side" />
+          <img src={product.image} alt="side" />
+          <img src={product.image} alt="side" />
         </div>
         <div className="procustdisplay-img">
           <img
             className="productdisplay-main-img"
-            src="../assets/product_1.png"
-            alt=""
+            src="../assets/product_1/png"
+            alt="Main Product"
           />
         </div>
       </div>
@@ -56,13 +80,7 @@ const ProductDisplay = (props) => {
           <div>XL</div>
           <div>XXL</div>
         </div>
-        <button
-          onClick={() => {
-            addToCart(product);
-          }}
-        >
-          Add to cart
-        </button>
+        <button onClick={onHandleClick}>Add to cart</button>
         <p className="productdisplay-right-category">
           <span>Category: </span>Women, T-Shirts, Crop Top
         </p>
@@ -70,6 +88,7 @@ const ProductDisplay = (props) => {
           <span>Tags: </span>Mordern, Latest
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

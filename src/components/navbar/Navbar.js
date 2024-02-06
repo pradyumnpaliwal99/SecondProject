@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 import cart_icon from "../assets/cart_icon.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [cartLength, setCartLength] = useState();
+  const fetchCartData = async () => {
+    const response = await axios.get(
+      "http://localhost:5000/api/cart/getCartDetails"
+    );
+    setCartLength(response.data.length);
+    console.log("cartData", response);
+  };
+  useEffect(() => {
+    fetchCartData();
+  }, []);
+
   return (
     <div className="navbar">
       <div className="nav-logo">
@@ -40,8 +55,8 @@ const Navbar = () => {
             Login
           </Link>
         </button>
-        <img src={cart_icon} alt="" />
-        <div className="nav-cart-count">0</div>
+        <img onClick={() => navigate("/cart")} src={cart_icon} alt="" />
+        <div className="nav-cart-count">{cartLength}</div>
       </div>
     </div>
   );
