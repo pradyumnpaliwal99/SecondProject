@@ -1,4 +1,4 @@
-import React, { useContext, useState ,useEffect} from "react";
+import React, { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../components/product_Display/ProductDisplay";
@@ -19,8 +19,8 @@ const Product = () => {
       "http://localhost:5000/api/products/getAllProduct"
       
     );
-    console.log(response,"response")
-  }
+    console.log(response)
+    
     useEffect(() => {
       fetchData();
 
@@ -33,5 +33,5 @@ const Product = () => {
     </div>
   );
 };
-
+}
 export default Product;

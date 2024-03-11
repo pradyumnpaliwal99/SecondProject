@@ -19,7 +19,7 @@ const Product = () => {
       "http://localhost:5000/api/products/getAllProduct"
       
     );
-    console.log(response,"response")
+    console.log(response"response")
   }
     useEffect(() => {
       fetchData();

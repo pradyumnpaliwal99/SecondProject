@@ -1,8 +1,7 @@
-import React, { useContext, useState ,useEffect} from "react";
+import React, { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../components/product_Display/ProductDisplay";
-import axios from "axios";
 
 const Product = () => {
   const { all_product } = useContext(ShopContext);
@@ -11,21 +10,10 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const addToCart = (data) => {
     setCart((prev) => ({ ...prev, data }));
+    
 
     console.log("cart", cart);
   };
-  const fetchData = async () => {
-    const response = await axios.get(
-      "http://localhost:5000/api/products/getAllProduct"
-      
-    );
-    console.log(response,"response")
-  }
-    useEffect(() => {
-      fetchData();
-
-    })
-
   return (
     <div>
       {console.log("cart", cart)}
